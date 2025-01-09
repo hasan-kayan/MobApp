@@ -2,3 +2,7 @@
 .env.servicesConnections
 node_modules
 .env.mail
+
+# Added by cargo
+
+/target

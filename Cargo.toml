@@ -1,8 +1,0 @@
-[package]
-name = "MyCard"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-open = "3.2"
-tokio = { version = "1", features = ["full"] }

@@ -15,12 +15,22 @@ const App = () => {
     };
     setDots(generateDots());
 
-    // Ensure video starts playing
-    if (videoRef.current) {
-      videoRef.current.play().catch(error => {
-        console.error("Autoplay failed:", error);
-      });
-    }
+    // Ensure video starts playing automatically
+    const playVideo = () => {
+      if (videoRef.current) {
+        videoRef.current
+          .play()
+          .then(() => console.log("Video autoplayed successfully"))
+          .catch((error) => {
+            console.warn("Autoplay blocked, trying again...", error);
+            setTimeout(() => {
+              videoRef.current.play().catch(err => console.error("Second attempt failed:", err));
+            }, 1000);
+          });
+      }
+    };
+
+    playVideo();
   }, []);
 
   return (
@@ -57,7 +67,7 @@ const App = () => {
         ))}
       </div>
 
-      {/* Video - Autoplay, Muted, Inline for Mobile */}
+      {/* Video - Autoplay, Muted, Inline for Mobile, Preload */}
       <video
         ref={videoRef}
         style={{ 
@@ -70,6 +80,7 @@ const App = () => {
         loop
         muted
         playsInline
+        preload="auto"
       >
         <source src="/video.mp4" type="video/mp4" />
         Your browser does not support the video tag.

@@ -44,7 +44,7 @@ const App = () => {
         color: "red",
         animation: "fadeIn 2s infinite alternate"
       }}>
-        🎉🥳 SENİ HERŞEYDEN ÇOOKK SEVİYORUMMMM 🎊🎈
+        🎉🥳 SENİ HER ŞEYDEN ÇOOKK SEVİYORUMMMM 🎊🎈
       </h2>
       <style>
         {`@keyframes fadeIn {

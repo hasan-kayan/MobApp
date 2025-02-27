@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./App.css";
 
 const App = () => {
   const [dots, setDots] = useState([]);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     const generateDots = () => {
@@ -13,6 +14,13 @@ const App = () => {
       }));
     };
     setDots(generateDots());
+
+    // Ensure video starts playing
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.error("Autoplay failed:", error);
+      });
+    }
   }, []);
 
   return (
@@ -49,13 +57,20 @@ const App = () => {
         ))}
       </div>
 
-      {/* Video */}
-      <video style={{ 
-        display: "block", 
-        maxWidth: "90%", 
-        height: "auto", 
-        borderRadius: "10px" 
-      }} autoPlay loop controls>
+      {/* Video - Autoplay, Muted, Inline for Mobile */}
+      <video
+        ref={videoRef}
+        style={{ 
+          display: "block", 
+          maxWidth: "90%", 
+          height: "auto", 
+          borderRadius: "10px" 
+        }}
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
         <source src="/video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>

@@ -5,6 +5,7 @@ const App = () => {
   return (
     <div style={{
       display: "flex",
+      flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
       height: "100vh",
@@ -36,6 +37,21 @@ const App = () => {
         <source src="/video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+      <h2 style={{
+        marginTop: "20px",
+        fontSize: "24px",
+        fontWeight: "bold",
+        color: "red",
+        animation: "fadeIn 2s infinite alternate"
+      }}>
+        🎉🥳 SENİ HERŞEYDEN ÇOOKK SEVİYORUMMMM 🎊🎈
+      </h2>
+      <style>
+        {`@keyframes fadeIn {
+          from { opacity: 0.3; }
+          to { opacity: 1; }
+        }`}
+      </style>
     </div>
   );
 };

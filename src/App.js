@@ -1,23 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 
 const App = () => {
+  const [dots, setDots] = useState([]);
+
+  useEffect(() => {
+    const generateDots = () => {
+      return Array.from({ length: 50 }).map(() => ({
+        top: `${Math.random() * 100}%`,
+        left: `${Math.random() * 100}%`,
+        opacity: Math.random(),
+      }));
+    };
+    setDots(generateDots());
+  }, []);
+
   return (
     <div style={{
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      height: "100vh",
+      minHeight: "100vh",
       backgroundColor: "pink",
-      position: "relative"
+      position: "relative",
+      padding: "20px"
     }}>
+      {/* Floating Dots */}
       <div style={{
         position: "absolute",
         inset: 0,
         overflow: "hidden"
       }}>
-        {Array.from({ length: 50 }).map((_, i) => (
+        {dots.map((dot, i) => (
           <div
             key={i}
             style={{
@@ -26,26 +41,38 @@ const App = () => {
               height: "5px",
               backgroundColor: "white",
               borderRadius: "50%",
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              opacity: Math.random()
+              top: dot.top,
+              left: dot.left,
+              opacity: dot.opacity
             }}
           ></div>
         ))}
       </div>
-      <video style={{ display: "block" }} width="900" height="500" autoPlay loop controls>
+
+      {/* Video */}
+      <video style={{ 
+        display: "block", 
+        maxWidth: "90%", 
+        height: "auto", 
+        borderRadius: "10px" 
+      }} autoPlay loop controls>
         <source src="/video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+
+      {/* Text Message */}
       <h2 style={{
         marginTop: "20px",
-        fontSize: "24px",
+        fontSize: "clamp(16px, 5vw, 24px)", // Responsive font size
         fontWeight: "bold",
         color: "red",
+        textAlign: "center",
         animation: "fadeIn 2s infinite alternate"
       }}>
         🎉🥳 SENİ HER ŞEYDEN ÇOOKK SEVİYORUMMMM 🎊🎈
       </h2>
+
+      {/* Animation */}
       <style>
         {`@keyframes fadeIn {
           from { opacity: 0.3; }

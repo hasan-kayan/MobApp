@@ -1,29 +1,23 @@
-.env.DbConnect
-.env.servicesConnections
-node_modules
-.env.mail
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Added by cargo
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
-/target
+# testing
+/coverage
 
+# production
+/build
 
-# Added by cargo
-#
-# already existing elements were commented out
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-#/target
-
-
-# Added by cargo
-#
-# already existing elements were commented out
-
-#/target
-
-
-# Added by cargo
-#
-# already existing elements were commented out
-
-#/target
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
